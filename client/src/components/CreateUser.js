@@ -1,9 +1,17 @@
 import React ,{useState} from 'react'
 import { Link ,useHistory} from 'react-router-dom';
 import QuizBee from "./QuizBee";
+import axios from 'axios'
+
+const createOrUpdateUser=async(name)=>{
+    return await axios.post(
+        `${process.env.REACT_APP_API}/`,{name}
+        )
+}
+
 const CreateUser=()=> {
 
-    const [user,setuser]=useState('')
+    const [name,setName]=useState('')
 
     let history = useHistory();
 
@@ -15,24 +23,26 @@ const CreateUser=()=> {
     const handleSubmit= async(event)=>{
         event.preventDefault();
         // console.log('Success:', value);
-        alert('A name was submitted: ' + user);
+        alert('A name was submitted: ' + name);
     try {
         //create this user in database
-
+        createOrUpdateUser(name)
+        .then(res=>console.log('create or update user response',res,name))
+        .catch()
 
         history.push('/startexam')
     } catch (error) {
         console.log(error);
     }
-       
+    
         
     }
     
     const handleChange=(event)=>{
-    setuser(
+        setName(
         event.target.value
     )
-    console.log(user);
+    console.log(name);
     }
 
     return (
@@ -48,7 +58,7 @@ const CreateUser=()=> {
                  className="form-control" 
                  id="exampleInputName" 
                  placeholder="your name"
-                 value={user}
+                 value={name}
                  onChange={handleChange}
                  />
                  

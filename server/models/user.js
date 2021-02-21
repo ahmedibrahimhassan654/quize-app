@@ -4,7 +4,7 @@ const {ObjectId}=mongoose.Schema
 
 
 const userSchema=new mongoose.Schema({
-    nanme:{
+    name:{
         type:String,
         required:true
     },

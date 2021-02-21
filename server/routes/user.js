@@ -1,13 +1,10 @@
 const express=require('express')
 
 const router=express.Router()
+const {createOrUpdateUser}=require('../controller/user')
 
 
-router.get('/',(req,res)=>{
-    res.json({
-        data:'tester regest his name'
-    })
-})
+router.post('/',createOrUpdateUser)
 
 
 module.exports=router
