@@ -1,29 +1,33 @@
 import React ,{useState} from 'react'
-import { Link } from 'react-router-dom';
+import { Link ,useHistory} from 'react-router-dom';
 
 const CreateUser=()=> {
 
     const [user,setuser]=useState('')
-   
+
+    let history = useHistory();
+
     const handleSubmit=(event)=>{
         // console.log('Success:', value);
         alert('A name was submitted: ' + user);
     event.preventDefault();
-
+        // <Link to='/startexam'> start exam</Link>
+        history.push('/startexam')
     }
-const handleChange=(event)=>{
+    
+    const handleChange=(event)=>{
     setuser(
         event.target.value
     )
     console.log(user);
-}
+    }
 
     return (
      
          <div className='container '>
     <form className="position-absolute top-50 start-50 translate-middle"
-    onSubmit={handleSubmit}
-    >
+        onSubmit={handleSubmit}
+         >
         <div className="mb-3">
         <label for="exampleInputName" className="form-label">Your name please</label>
         <input type="text" 

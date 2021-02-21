@@ -6,6 +6,9 @@ import QuestionBox from './QuestionBox'
 import Result from './Result'
 
 class QuizBee extends Component{
+
+  
+
     state={
         questionBank:[],
         singleQuestion:{},
@@ -14,6 +17,8 @@ class QuizBee extends Component{
 
 
     }
+
+   
     getQuestions=()=>{
         quizService().then(questionions=>{
             console.log('all questions',questionions);
@@ -42,6 +47,10 @@ class QuizBee extends Component{
     }
 
     playAgain=()=>{
+       
+        
+        this.props.history.push("/");
+        
         this.getQuestions()
         this.setState({
             score:0,
@@ -79,6 +88,7 @@ class QuizBee extends Component{
                             playAgain={this.playAgain}
                             />)
                     :null}
+
 
             </div>
         )
