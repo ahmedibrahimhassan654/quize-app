@@ -3,7 +3,15 @@ const mongoose=require('mongoose')
 const morgan=require('morgan')
 const bodyParser=require('body-parser')
 const cors=require('cors')
+const {readdirSync}=require('fs')
+
 require('dotenv').config()
+
+
+
+
+
+
 
 //App
 const app= express()
@@ -25,9 +33,10 @@ app.use(bodyParser.json({limit:'2mb'}));
 app.use(cors());
 
 
-//route
+//routes middelware
 
 
+readdirSync('./routes').map(r=> app.use( '/api',require('./routes/'+r)))
 
 
 //server listen
