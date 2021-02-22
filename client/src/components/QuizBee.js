@@ -1,9 +1,16 @@
 import React,{Component} from "react"
-
+import axios from 'axios'
 import "./../assets/style.css"
-import quizService from './../quizService'
+ import quizService from './../quizService'
 import QuestionBox from './QuestionBox'
 import Result from './Result'
+
+const getAllQuestions=async()=>{
+    return await axios.get(
+        `${process.env.REACT_APP_API}/allq`,
+        )
+}
+
 
 class QuizBee extends Component{
 
@@ -20,20 +27,30 @@ class QuizBee extends Component{
 
    
     getQuestions=()=>{
-        quizService().then(questionions=>{
-            console.log('all questions',questionions);
-            this.setState({
-                questionBank:questionions
-            })
-            questionions.map(question=>{
+     
+
+//with API END Point 
+        // getAllQuestions().then(
+        // //    console.log(questionions)
+        //    ( questionions)=>{
+        //     console.log('all questions',questionions.data.data);
+        //     this.setState({
+        //         questionBank:questionions.data.data
+        //     })
+         
+        //     })
+//with static data 
+        quizService().then(
+            //    console.log(questionions)
+               ( questionions)=>{
+                console.log('all questions',questionions);
                 this.setState({
-                    singleQuestion:question
+                    questionBank:questionions
                 })
-                console.log('single question',question);
-            })
+             
+                })
           
-           
-        })
+        
     }
     computeAnswer=(answer,correctAnser)=>{
         if(answer===correctAnser){
