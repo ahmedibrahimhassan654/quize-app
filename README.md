@@ -1,4 +1,4 @@
-MCQ App
+MCQ App for  masterlinux interview assysment
 
 We want to have an application that allows students to enroll MCQ exams
 
