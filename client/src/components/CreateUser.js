@@ -1,5 +1,6 @@
-import React ,{useState} from 'react'
+import React ,{useState,useEffect} from 'react'
 import { Link ,useHistory} from 'react-router-dom';
+import {useDispatch} from 'react-redux'
 import QuizBee from "./QuizBee";
 import axios from 'axios'
 
@@ -15,7 +16,24 @@ const CreateUser=()=> {
 
     let history = useHistory();
 
-	
+    const dispatch=useDispatch()
+
+    // useEffect(() => {
+        
+    //     NewUser ()
+    //  }, [])
+	// const NewUser= async(name)=>{
+    //     console.log(name);
+    //     // if(name){
+    //     //     console.log(name);
+    //     //     dispatch({
+    //     //         type:'CTRATE_USER',
+    //     //         payload:{
+    //     //            user: name
+    //     //         }
+    //     //     })
+    //     // }
+    // }
     
  
 
@@ -27,8 +45,11 @@ const CreateUser=()=> {
     try {
         //create this user in database
         createOrUpdateUser(name)
-        .then(res=>console.log('create or update user response',res,name))
-        .catch()
+        .then(res=>{
+            ///push in redux 
+            console.log(res);
+        })
+        
 
         history.push('/startexam')
     } catch (error) {
